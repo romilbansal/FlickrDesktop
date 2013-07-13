@@ -31,13 +31,22 @@
       </servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>getNext</servlet-name>
+    <servlet-class>com.flickr.getDetails.NextFolder
+      </servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>getFolder</servlet-name>
-    <servlet-class>com.flickr.getDetails.GetFolder
+    <servlet-class>com.flickr.getPermissions.GetFolder
       </servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>requestPermissions</servlet-name>
     <url-pattern>/requestPermissions</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>getNext</servlet-name>
+    <url-pattern>/getNext</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>getPermissions</servlet-name>

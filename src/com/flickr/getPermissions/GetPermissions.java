@@ -1,8 +1,10 @@
 package com.flickr.getPermissions;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -64,7 +66,9 @@ public class GetPermissions extends HttpServlet {
 		FileReader fi = new FileReader(f);
 
 		BufferedReader bw = new BufferedReader(fi);
-
+		BufferedWriter b = new BufferedWriter(new FileWriter(f, true));
+		b.newLine();
+		
 		String toke = bw.readLine();
 		String secret = bw.readLine();
 		Flickr flickr = new Flickr("5f0a1d8f31426f811498e2ec5295c705", "86bbe3f2c143379c", new REST());
@@ -72,7 +76,9 @@ public class GetPermissions extends HttpServlet {
 		AuthInterface authInterface = flickr.getAuthInterface();
 		Token token = new Token(toke, secret);
 		String verifier = request.getParameter("oauth_verifier");
-
+		b.append(verifier);
+		b.flush();
+		b.close();
 		Verifier v = new Verifier(verifier);
 		session.setAttribute("verifier", request.getParameter("oauth_verifier"));
 		Token accessToken = authInterface.getAccessToken(token, v);
