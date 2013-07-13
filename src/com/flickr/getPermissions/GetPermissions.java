@@ -89,12 +89,18 @@ public class GetPermissions extends HttpServlet {
 			ArrayList<String> photo = new ArrayList<String>();
 			Photoset curr = null;
 			for(Photoset pp : p){
-				set.add(pp.getTitle().split("->")[0]);
-				if(pp.getTitle().split("->").length==1){
+				if(!pp.getTitle().contains("home->")){
+					continue;
+				}
+				set.add(pp.getTitle().split("->")[1]);
+				//System.out.println(pp.getTitle().split("->")[0]);
+				//System.out.println(pp.getTitle().split("->").length);
+				if(pp.getTitle().equals("home")){
+					//System.out.println("Yes");
 					curr=pp;
 				}
 			}
-			if(set.size()>0){
+			if(curr!=null){
 				PhotoList<Photo> photos = iface.getPhotos(curr.getId(), 500, 1);
 				for(Photo ph:photos){
 					photo.add(ph.getLargeUrl());
