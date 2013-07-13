@@ -109,15 +109,15 @@ public class GetPermissions extends HttpServlet {
 			JsonArray ja = new JsonArray();
 			for(String s : set){
 				JsonObject j = new JsonObject();
-				j.addProperty("Name", s);
-				j.addProperty("Next", "home->"+s);
+				j.addProperty("name", s);
+				j.addProperty("next", "home->"+s);
 				ja.add(j);
 			}
 			jo.add("folders", ja);
 			JsonArray ja2 = new JsonArray();
 			for(String s : photo){
 				JsonObject j = new JsonObject();
-				j.addProperty("Name", s);
+				j.addProperty("name", s);
 				ja.add(j);
 			}
 			jo.add("photos", ja2);
