@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="/home/romil/workspace/FlickrDemo/WebContent/WEB-INF/lib/Flickr4Java-2.4.jar"/>
 	<classpathentry kind="lib" path="/home/romil/workspace/FlickrDemo/WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="/home/romil/workspace/FlickrDemo/WebContent/WEB-INF/lib/scribe-1.3.5.jar"/>
+	<classpathentry kind="lib" path="/home/romil/workspace/FlickrDemo/WebContent/WEB-INF/lib/gson-2.2.4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
