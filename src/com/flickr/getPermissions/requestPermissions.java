@@ -42,7 +42,7 @@ public class requestPermissions extends HttpServlet {
 
 		//Scanner scanner = new Scanner(System.in);
 
-		Token token = authInterface.getRequestToken("localhost:8080/getPermissions");
+		Token token = authInterface.getRequestToken("http://www.localhost:8080/getPermissions");
 		//System.out.println("token: " + token);
 
 		String url = authInterface.getAuthorizationUrl(token, Permission.DELETE);

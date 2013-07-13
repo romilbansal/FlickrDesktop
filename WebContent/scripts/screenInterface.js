@@ -6,6 +6,10 @@ $(document).ready(function(){
     $(this).hide();
   });
   
+  $("#signIn").click(function(){
+	  window.location.href = './requestPermissions';
+  });
+  
     $(".thumbImage").click(function(e){
     
         var xCoord = e.pageX;
