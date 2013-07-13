@@ -1,6 +1,7 @@
 <html>
     <head>
         <link href = "styles.css" rel = "stylesheet" />
+        <link href = "tooltip_styles.css" rel = "stylesheet" />
         <script src="scripts/jquery-1.10.2.min.js"></script>
         <!--
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -17,14 +18,21 @@
         <h1>Hola $username!</h1>
         <div class="microText">Now you know how to greet in Spanish!</span>
         <div class="mainScreen" align="center">
+            
+            <div id="topMenu">
+                <a href="userImages.html"> Top Directory  </a>
+                <a href="logout.html"> Logout </a>
+                <a href="about.html"> About </a>
+            </div>
+            
             <div class="contextMenu">
-                
+                <br><br>
                 
             </div>
             <table class="galleria">
-                
                 <tr>
                     <!-- For each user tag at current level, create a folder -->
+                    <!-- While Adding Dynamically, make a count of the things added. After every four td, make a tr -->
                     <td class="showThumb"><img src="images/folder.jpg" class="thumbImage" /><br>Folder Name</td>
                     <td class="showThumb"><img src="images/folder.jpg" class="thumbImage" /><br>Folder Name</td>
                     <td class="showThumb"><img src="images/folder.jpg" class="thumbImage" /><br>Folder Name</td>
@@ -36,6 +44,14 @@
                     <td class="showThumb"><img src="images/images.jpg" class="thumbImage" /><br>Filename.jpg</td>
                     
                     
+                </tr>
+                 <tr>
+                    <!-- For each user tag at current level, create a folder -->
+                    <!-- While Adding Dynamically, make a count of the things added. After every four td, make a tr -->
+                    <td class="showThumb"><img src="images/folder.jpg" class="thumbImage" /><br>Folder Name</td>
+                    <td class="showThumb"><img src="images/folder.jpg" class="thumbImage" /><br>Folder Name</td>
+                    <td class="showThumb"><img src="images/folder.jpg" class="thumbImage" /><br>Folder Name</td>
+                    <td class="showThumb"><img src="images/folder.jpg" class="thumbImage" /><br>Folder Name</td>
                 </tr>
                 
                 

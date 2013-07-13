@@ -12,7 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.Session;
 import org.scribe.model.Token;
 import org.scribe.model.Verifier;
 
@@ -56,7 +58,7 @@ public class GetPermissions extends HttpServlet {
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		HttpSession session = request.getSession();
 		File f = new File("/home/romil/temp.txt");
 
 		FileReader fi = new FileReader(f);
@@ -72,7 +74,7 @@ public class GetPermissions extends HttpServlet {
 		String verifier = request.getParameter("oauth_verifier");
 
 		Verifier v = new Verifier(verifier);
-
+		session.setAttribute("verifier", request.getParameter("oauth_verifier"));
 		Token accessToken = authInterface.getAccessToken(token, v);
 		//System.out.println("Authentication success");
 
@@ -119,7 +121,7 @@ public class GetPermissions extends HttpServlet {
 				ja.add(j);
 			}
 			jo.add("photos", ja2);
-			response.sendRedirect("http://localhost:8080/userimage.html?j="+jo.toString());
+			response.sendRedirect("http://localhost:8080/FlickrDemo/userImages.html?j="+jo.toString());
 		} catch (FlickrException e) {
 			// TODO Auto-geneated catch block
 			e.printStackTrace();
