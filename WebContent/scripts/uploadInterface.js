@@ -14,14 +14,14 @@ $(document)
 					});
 					
 					$("#canvasloader-container").css("visibility", 'hidden');
-
+					
 
 					var result = jQuery.parseJSON(getURLParameter("j"));
 					curFolder = result.current;
 					saveFolder=curFolder.replace(/->/g, '/');
 					strAction = "uploadServlet?folder=";
 					strAction = strAction + saveFolder;
-					
+					$("#filePath").val(saveFolder);
 					$("#myform").attr('action', strAction);
 					
 					var folders = curFolder.split("->");
@@ -73,9 +73,6 @@ $(document)
 			  		loaderObj.style.position = "absolute";
 			  		loaderObj.style["top"] = cl.getDiameter() * -0.5 + "px";
 			  		loaderObj.style["left"] = cl.getDiameter() * -0.5 + "px";
-
-
-					
 					
 					
 				});
