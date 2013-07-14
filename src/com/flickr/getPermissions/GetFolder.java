@@ -106,15 +106,15 @@ public class GetFolder extends HttpServlet {
 			JsonArray ja = new JsonArray();
 			for(String s : set){
 				JsonObject j = new JsonObject();
-				j.addProperty("Name", s);
-				j.addProperty("Next", "home->"+s);
+				j.addProperty("name", s);
+				j.addProperty("next", "home->"+s);
 				ja.add(j);
 			}
 			jo.add("folders", ja);
 			JsonArray ja2 = new JsonArray();
 			for(String s : photo){
 				JsonObject j = new JsonObject();
-				j.addProperty("Name", s);
+				j.addProperty("name", s);
 				ja.add(j);
 			}
 			jo.add("photos", ja2);
@@ -163,12 +163,12 @@ public class GetFolder extends HttpServlet {
 			Photoset curr = null;
 			for(Photoset pp : p){
 				if(pp.getTitle().contains(nextFolder+"->")&&pp.getTitle().split("->").length==nextFolder.split("->").length+1)
-				set.add(pp.getTitle().split("->")[0]);
+				set.add(pp.getTitle().split("->")[pp.getTitle().split("->").length-1]);
 				if(pp.getTitle().equals(nextFolder)){
 					curr=pp;
 				}
 			}
-			if(set.size()>0){
+			if(curr!=null){
 				PhotoList<Photo> photos = iface.getPhotos(curr.getId(), 500, 1);
 				for(Photo ph:photos){
 					photo.add(ph.getLargeUrl());
@@ -183,23 +183,24 @@ public class GetFolder extends HttpServlet {
 			JsonArray ja = new JsonArray();
 			for(String s : set){
 				JsonObject j = new JsonObject();
-				j.addProperty("Name", s);
-				j.addProperty("Next", "home->"+s);
+				j.addProperty("name", s);
+				j.addProperty("next", curr.getTitle()+"->"+s);
 				ja.add(j);
 			}
 			jo.add("folders", ja);
 			JsonArray ja2 = new JsonArray();
 			for(String s : photo){
 				JsonObject j = new JsonObject();
-				j.addProperty("Name", s);
-				ja.add(j);
+				j.addProperty("name", s);
+				ja2.add(j);
 			}
 			jo.add("photos", ja2);
-			response.setContentType("application/json");
-			PrintWriter out = response.getWriter();
+			//response.setContentType("application/json");
+			//PrintWriter out = response.getWriter();
 			// Assuming your json object is **jsonObject**, perform the following, it will return your json object  
-			out.print(jo);
-			out.flush();
+			//out.print(jo);
+			//out.flush();
+			response.sendRedirect("http://localhost:8080/FlickrDemo/userImages.html?j="+jo.toString());
 			//response.sendRedirect("http://localhost:8080/FlickrDemo/userImages.html?j="+jo.toString());
 		} catch (FlickrException e) {
 			// TODO Auto-geneated catch block
