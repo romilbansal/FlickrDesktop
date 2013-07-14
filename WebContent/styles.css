@@ -203,8 +203,6 @@ td{
 	background: -ms-linear-gradient(top,  #ffffff 0%,#d3efff 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d3efff',GradientType=0 );
 	background: linear-gradient(to bottom,  #ffffff 0%,#d3efff 100%);
-	
-
 }
 
 #topMenu a:hover{
@@ -233,8 +231,6 @@ td{
 	background: -ms-linear-gradient(top,  #fafafa 0%,#d3e2f2 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafafa', endColorstr='#d3e2f2',GradientType=0 );
 	background: linear-gradient(to bottom,  #fafafa 0%,#d3e2f2 100%);
-	
-
 }
 
 
@@ -339,5 +335,9 @@ color: #111111;
 }
 
 #addBut{
+	width: 250px;
+}
+#addBut:hover{
+	opacity: .5;
 	
 }

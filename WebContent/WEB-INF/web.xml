@@ -30,6 +30,11 @@
     <servlet-class>com.flickr.getPermissions.GetPermissions
       </servlet-class>
   </servlet>
+   <servlet>
+    <servlet-name>temp</servlet-name>
+    <servlet-class>com.flickr.getPermissions.temp
+      </servlet-class>
+  </servlet>
   <servlet>
     <servlet-name>getNext</servlet-name>
     <servlet-class>com.flickr.getDetails.NextFolder
@@ -58,6 +63,10 @@
   <servlet-mapping>
     <servlet-name>requestPermissions</servlet-name>
     <url-pattern>/requestPermissions</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>temp</servlet-name>
+    <url-pattern>/temp</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>uploadServlet</servlet-name>

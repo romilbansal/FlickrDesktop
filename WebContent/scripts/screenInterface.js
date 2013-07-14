@@ -102,7 +102,15 @@ $(document)
 					$("body").click(function(e) {
 						$(".thumbMenu").css("display", "none");
 					});
-
+					
+					
+					
+					$("#addBut").click(function(e){
+						window.location.href = './temp?j='+getURLParameter("j");
+					});
+					
+					
+					
 				});
 
 function receiveServerData() {
@@ -154,7 +162,7 @@ function receiveServerData() {
 	}		
 		innerHTML = innerHTML + "<td class=\"showThumb\" id = \"addBut\"><img src=\"images/plus.jpg\"  /><br></td>";
 	
-	
+
 	innerHTML = innerHTML + "</tr></table>"
 	$("#galleriaDiv").append(innerHTML);
 }
