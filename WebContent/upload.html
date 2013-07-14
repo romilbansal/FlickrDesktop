@@ -1,0 +1,69 @@
+<html>
+    <head>
+    <title>Upload - Flickr Imager</title>
+        <link href = "styles.css" rel = "stylesheet" />
+        <link href = "display.css" rel = "stylesheet" />
+        <link href = "styles_login.css" rel = "stylesheet" />
+        <script src="scripts/jquery-1.10.2.min.js"></script>
+        <script src="scripts/uploadInterface.js"></script>
+        
+        <script src="http://heartcode-canvasloader.googlecode.com/files/heartcode-canvasloader-min-0.9.1.js"></script>
+        
+        
+	
+	<style type="text/css">
+		body, html {
+			margin:0;
+			padding:0;
+			overflow:hidden;
+			background-color:#ffffff;
+		}
+		.wrapper {
+			position:absolute;
+			top:50%;
+			left:50%;
+		}
+	</style>
+        
+        
+        
+    </head>
+    
+    <body>
+    <div id="Imagecontainer" align="center">
+        
+        <h1>Upload Image</h1>
+	    <div class="backForm">
+		<div class="mainScreen" align="center">
+		    <div id="topMenu">
+			<a href="userImages.html"> Top Directory  </a>
+		    </div>
+		</div>
+		
+		<div class = "loader">
+		
+		</div>
+		
+		<div class="mainScreen" align="center" style="margin-top:-1px;">
+		    
+		    <div id="canvasloader-container" class="wrapper"></div>
+		    
+		    
+		    <form  method="post" enctype="multipart/form-data" id="myform">
+			<h2 style="color:#050505;"> Select File To Be Uploaded </h2>
+			<br>
+			<input type="file" id = "fileIn" name="fileIn"> <br><br>
+			<input type="text" id = "filePath" name = "filePath" id = "filePathInput" style="width: 370px">
+			    <br>
+			    <input type="submit" value="Upload to Flikr" id="upFlickr">
+			
+		    </form>
+		    
+		</div>
+		
+	    </div>
+        
+ 
+    </div>    
+    </body>
+</html>

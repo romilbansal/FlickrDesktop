@@ -52,71 +52,9 @@ public class UploadPhoto extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	public static void main(String args[]) throws IOException{
-
-		// TODO Auto-generated method stub
-		File f = new File("/home/romil/temp.txt");
-
-		FileReader fi = new FileReader(f);
-
-		BufferedReader bw = new BufferedReader(fi);
-
-		String toke = bw.readLine();
-		String secret = bw.readLine();
-		String verifier = bw.readLine();
-		Flickr flickr = new Flickr("5f0a1d8f31426f811498e2ec5295c705", "86bbe3f2c143379c", new REST());
-		Flickr.debugStream = false;
-		AuthInterface authInterface = flickr.getAuthInterface();
-		Token token = new Token(toke, secret);
-		System.out.println(verifier);
-		String nextFolder = "home/testUpload/test1";
-		Verifier v = new Verifier(verifier);
-		Token accessToken = new Token(bw.readLine(), bw.readLine());
-		Auth auth;
-		try {
-			auth = authInterface.checkToken(accessToken);
-			flickr.setAuth(auth);
-			RequestContext.getRequestContext().setAuth(auth);
-
-			Uploader uploader = flickr.getUploader();
-
-
-			File imageFile = new File("/home/romil/Pictures/test.png");
-			InputStream in1 = null;
-			in1 = new FileInputStream(imageFile);
-			UploadMetaData metaData = new UploadMetaData();
-			metaData.setPublicFlag(true);
-			String photoId = uploader.upload(in1, metaData);
-
-			PhotosetsInterface iface = flickr.getPhotosetsInterface();
-			Photosets photosets = iface.getList(auth.getUser().getId());
-			ArrayList<Photoset> p = (ArrayList<Photoset>) photosets.getPhotosets();
-			Photoset curr = null;
-			for(Photoset pp : p){
-				if(!pp.getTitle().contains("home->")){
-					continue;
-				}
-				if(pp.getTitle().equals(nextFolder.replaceAll("/", "->"))){
-					curr=pp;
-				}
-			}
-			
-			
-			if(curr==null){
-				PhotosetsInterface pp = flickr.getPhotosetsInterface();
-				pp.create(nextFolder.replaceAll("/", "->"), "FlickrDesktop", photoId);
-			}
-			else{
-				PhotosetsInterface pp = flickr.getPhotosetsInterface();
-				PhotosInterface pi = flickr.getPhotosInterface();
-				pp.addPhoto(curr.getId(), photoId);
-			}
-		} catch (FlickrException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
+		
 	}
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		File f = new File("/home/romil/temp.txt");
@@ -143,45 +81,46 @@ public class UploadPhoto extends HttpServlet {
 			RequestContext.getRequestContext().setAuth(auth);
 
 			Uploader uploader = flickr.getUploader();
+			File upload = new File("/home/romil/UploadStuff");
+			File foo[]= upload.listFiles();
+			for (File imageFile : foo){
+				//File imageFile = new File("/home/romil/Pictures/test.png");
+				InputStream in1 = null;
+				in1 = new FileInputStream(imageFile);
+				UploadMetaData metaData = new UploadMetaData();
+				metaData.setPublicFlag(true);
+				String photoId = uploader.upload(in1, metaData);
 
-
-			File imageFile = new File("/home/romil/Pictures/test.png");
-			InputStream in1 = null;
-			in1 = new FileInputStream(imageFile);
-			UploadMetaData metaData = new UploadMetaData();
-			metaData.setPublicFlag(true);
-			String photoId = uploader.upload(in1, metaData);
-
-			PhotosetsInterface iface = flickr.getPhotosetsInterface();
-			Photosets photosets = iface.getList(auth.getUser().getId());
-			ArrayList<Photoset> p = (ArrayList<Photoset>) photosets.getPhotosets();
-			Photoset curr = null;
-			nextFolder = nextFolder.replaceAll("/", "->");
-			System.out.println(nextFolder);
-			for(Photoset pp : p){
-				if(!pp.getTitle().contains("home->")){
-					continue;
+				PhotosetsInterface iface = flickr.getPhotosetsInterface();
+				Photosets photosets = iface.getList(auth.getUser().getId());
+				ArrayList<Photoset> p = (ArrayList<Photoset>) photosets.getPhotosets();
+				Photoset curr = null;
+				for(Photoset pp : p){
+					if(!pp.getTitle().contains("home->")){
+						continue;
+					}
+					if(pp.getTitle().equals(nextFolder.replaceAll("/", "->"))){
+						curr=pp;
+					}
 				}
-				if(pp.getTitle().equals(nextFolder)){
-					curr=pp;
+
+
+				if(curr==null){
+					PhotosetsInterface pp = flickr.getPhotosetsInterface();
+					pp.create(nextFolder.replaceAll("/", "->"), "FlickrDesktop", photoId);
 				}
-			}
-			
-			
-			if(curr==null){
-				PhotosetsInterface pp = flickr.getPhotosetsInterface();
-				pp.create(nextFolder, "FlickrDesktop", photoId);
-			}
-			else{
-				PhotosetsInterface pp = flickr.getPhotosetsInterface();
-				PhotosInterface pi = flickr.getPhotosInterface();
-				pp.addPhoto(curr.getId(), photoId);
+				else{
+					PhotosetsInterface pp = flickr.getPhotosetsInterface();
+					PhotosInterface pi = flickr.getPhotosInterface();
+					pp.addPhoto(curr.getId(), photoId);
+				}
+				imageFile.delete();
 			}
 		} catch (FlickrException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect("http://localhost:8080/FlickrDemo/getFolder?next="+nextFolder);
+		response.sendRedirect("http://localhost:8080/FlickrDemo/getFolder?next="+nextFolder.replaceAll("/", "->"));
 	}
 
 	/**
