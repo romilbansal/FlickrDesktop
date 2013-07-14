@@ -77,11 +77,16 @@ public class GetPermissions extends HttpServlet {
 		Token token = new Token(toke, secret);
 		String verifier = request.getParameter("oauth_verifier");
 		b.append(verifier);
-		b.flush();
-		b.close();
+		b.newLine();
+		
 		Verifier v = new Verifier(verifier);
 		session.setAttribute("verifier", request.getParameter("oauth_verifier"));
 		Token accessToken = authInterface.getAccessToken(token, v);
+		b.append(accessToken.getToken());
+		b.newLine();
+		b.append(accessToken.getSecret());
+		b.flush();
+		b.close();
 		//System.out.println("Authentication success");
 
 		try {
@@ -118,6 +123,7 @@ public class GetPermissions extends HttpServlet {
 			JsonObject jo = new JsonObject();
 			jo.addProperty("user", user);
 			jo.addProperty("id", auth.getUser().getId());
+			jo.addProperty("current", "home");
 			JsonArray ja = new JsonArray();
 			for(String s : set){
 				JsonObject j = new JsonObject();

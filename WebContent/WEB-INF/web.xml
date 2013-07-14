@@ -36,6 +36,11 @@
       </servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>delete</servlet-name>
+    <servlet-class>com.flickr.getPermissions.DeletePhoto
+      </servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>getFolder</servlet-name>
     <servlet-class>com.flickr.getPermissions.GetFolder
       </servlet-class>
@@ -43,6 +48,10 @@
   <servlet-mapping>
     <servlet-name>requestPermissions</servlet-name>
     <url-pattern>/requestPermissions</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>delete</servlet-name>
+    <url-pattern>/deletePhoto</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>getNext</servlet-name>

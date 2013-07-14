@@ -54,8 +54,12 @@ $(document)
 
 										var content = "<div class='thumbMenu' id='tempMenu'></div>";
 										$(this).after(content);
-										var moreHTML = "<ul><li><a href=\"\"> View Image </a></li><li><a href=\"\"> Delete Image </a></li><li><a href=\"\"> Move Image </a></li>";
-										var folderHTML = "<ul><li><a href=\"\"> View Image </a></li><li><a href=\"\"> O </a></li><li><a href=\"\"> View Image </a></li>";
+										
+										var result = jQuery.parseJSON(getURLParameter("j"));
+										curFolder = result.current;
+										
+										var imgU = $(this).attr("src");
+										var moreHTML = "<ul><li><a href=\"displayImage.html?imageURL="+imgU+"&backFolder="+curFolder+"\" \> View Image </a></li><li><a href=\"http://localhost:8080/FlickrDemo/deletePhoto?curr="+curFolder+"&url="+imgU+"\"> Delete Image </a></li><li><a href=\"\"> Move Image </a></li>";
 										$("#tempMenu").html(moreHTML);
 
 										exists = true;
@@ -162,9 +166,8 @@ function getURLParameter(name) {
  * src=\"images/folder.jpg\" class=\"thumbImage\" /><br>"+ "</td>"; }
  * 
  * innerHTML = innerHTML + "</tr></table>"
- * $("#galleriaDiv").append(innerHTML);
- *  }, error: function(req, error) { console.log(req); console.log(error);
- * //alert("AJAX-JSON Error : "+req.error); } });
- *  }
+ * $("#galleriaDiv").append(innerHTML); }, error: function(req, error) {
+ * console.log(req); console.log(error); //alert("AJAX-JSON Error :
+ * "+req.error); } }); }
  * 
  */
