@@ -22,7 +22,6 @@ $(document)
 					$(".thumbFolder")
 							.click(
 									function(e) {
-
 										var xCoord = e.pageX;
 										var yCoord = e.pageY;
 										$("#tempMenu").remove();
@@ -34,7 +33,6 @@ $(document)
 												+ nextQuery
 												+ "\"> Open Folder </a></li>";
 										$("#tempMenu").html(moreHTML);
-
 										exists = true;
 										$("#tempMenu").css("visibility",
 												"visible");
@@ -47,7 +45,6 @@ $(document)
 					$(".thumbImage")
 							.click(
 									function(e) {
-
 										var xCoord = e.pageX;
 										var yCoord = e.pageY;
 										$("#tempMenu").remove();
@@ -70,6 +67,25 @@ $(document)
 										return false;
 
 									});
+					
+
+					var result = jQuery.parseJSON(getURLParameter("j"));
+					curFolder = result.current;
+				
+					var folders = curFolder.split("->");
+					var i=0;
+					var menuCrumbs="";
+					for(i=0; i<folders.length; i++){
+						var path = "";
+						for(j=0; j<=i; j++){
+							if(j!=0)
+								path = path + "->";
+							path = path + folders[j];
+						}
+						menuCrumbs = menuCrumbs + "<a href=\"http://localhost:8080/FlickrDemo/getFolder?next="+path+"\">"+ folders[i] +"</a>";
+					}
+					$("#topMenu").html(menuCrumbs);
+					$("title").text("Picture Browser : "+folders);
 
 					$(".tempMenu").mouseout(function(e) {
 						alert("Hi");

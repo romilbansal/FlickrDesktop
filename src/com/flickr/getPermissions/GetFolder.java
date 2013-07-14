@@ -114,7 +114,7 @@ public class GetFolder extends HttpServlet {
 			for(String s : set){
 				JsonObject j = new JsonObject();
 				j.addProperty("name", s);
-				j.addProperty("next", curr.getTitle()+"->"+s);
+				j.addProperty("next", nextFolder+"->"+s);
 				ja.add(j);
 			}
 			jo.add("folders", ja);

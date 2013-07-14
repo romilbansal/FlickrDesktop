@@ -44,35 +44,7 @@ public class DeletePhoto extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     public static void main(String args[]) throws IOException, FlickrException{
-    	File f = new File("/home/romil/temp.txt");
-
-		FileReader fi = new FileReader(f);
-
-		BufferedReader bw = new BufferedReader(fi);
-
-		String toke = bw.readLine();
-		String secret = bw.readLine();
-		String verifier = bw.readLine();
-		Flickr flickr = new Flickr("5f0a1d8f31426f811498e2ec5295c705", "86bbe3f2c143379c", new REST());
-		Flickr.debugStream = false;
-		AuthInterface authInterface = flickr.getAuthInterface();
-		Token token = new Token(toke, secret);
-		System.out.println(verifier);
-		Verifier v = new Verifier(verifier);
-		Token accessToken = new Token(bw.readLine(), bw.readLine());
-		Photo p = new Photo();
-		Auth auth = authInterface.checkToken(accessToken);
-		flickr.setAuth(auth);
-		RequestContext.getRequestContext().setAuth(auth);
-		String id = "9280014660";
-		p.setId(id);
-		PhotosInterface pi = flickr.getPhotosInterface();
-		try {
-			pi.delete(id);
-		} catch (FlickrException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
