@@ -84,6 +84,8 @@ $(document)
 						}
 						menuCrumbs = menuCrumbs + "<a href=\"http://localhost:8080/FlickrDemo/getFolder?next="+path+"\">"+ folders[i] +"</a>";
 					}
+					
+					
 					$("#topMenu").html(menuCrumbs);
 					$("title").text("Picture Browser : "+folders);
 
@@ -146,7 +148,13 @@ function receiveServerData() {
 				+ "<td class=\"showThumb\" style=\"visibility:hidden\"><img src=\"images/folder.jpg\" class=\"thumbFolder\"   /><br></td>";
 		count++;
 	}
-
+	
+	if(count%4==0) {
+		innerHTML = innerHTML + "</tr><tr>"
+	}		
+		innerHTML = innerHTML + "<td class=\"showThumb\" id = \"addBut\"><img src=\"images/plus.jpg\"  /><br></td>";
+	
+	
 	innerHTML = innerHTML + "</tr></table>"
 	$("#galleriaDiv").append(innerHTML);
 }
