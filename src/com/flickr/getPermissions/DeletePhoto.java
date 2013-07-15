@@ -49,7 +49,7 @@ public class DeletePhoto extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		File f = new File("/home/romil/temp.txt");
+		File f = new File("/var/lib/openshift/51e38b2fe0b8cd50a100002b/app-root/data/temp.txt");
 
 		FileReader fi = new FileReader(f);
 
@@ -80,7 +80,7 @@ public class DeletePhoto extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect("http://localhost:8080/FlickrDemo/getFolder?next="+nextFolder);
+		response.sendRedirect("http://server-zerovelocity.rhcloud.com/FlickDesk/getFolder?next="+nextFolder);
 	}
 
 	/**

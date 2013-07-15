@@ -44,7 +44,7 @@ public class requestPermissions extends HttpServlet {
 
 		//Scanner scanner = new Scanner(System.in);
 
-		Token token = authInterface.getRequestToken("http://www.localhost:8080/getPermissions");
+		Token token = authInterface.getRequestToken("http://server-zerovelocity.rhcloud.com/FlickDesk/getPermissions");
 		System.out.println("token: " + token.getToken() + " "+token.getSecret());
 
 		String url = authInterface.getAuthorizationUrl(token, Permission.DELETE);
@@ -58,12 +58,12 @@ public class requestPermissions extends HttpServlet {
 
 		//Scanner scanner = new Scanner(System.in);
 
-		Token token = authInterface.getRequestToken("http://localhost:8080/FlickrDemo/getPermissions");
+		Token token = authInterface.getRequestToken("http://server-zerovelocity.rhcloud.com/FlickDesk/getPermissions");
 		System.out.println("token: " + token.getToken() + " "+token.getSecret());
 
 		String url = authInterface.getAuthorizationUrl(token, Permission.DELETE);
 		
-		File f = new File("/home/romil/temp.txt");
+		File f = new File("/var/lib/openshift/51e38b2fe0b8cd50a100002b/app-root/data/temp.txt");
 		
 		FileWriter fi = new FileWriter(f);
 		

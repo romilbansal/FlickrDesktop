@@ -60,7 +60,7 @@ public class GetFolder extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		HttpSession session = request.getSession();
-		File f = new File("/home/romil/temp.txt");
+		File f = new File("/var/lib/openshift/51e38b2fe0b8cd50a100002b/app-root/data/temp.txt");
 
 		FileReader fi = new FileReader(f);
 
@@ -125,8 +125,8 @@ public class GetFolder extends HttpServlet {
 				ja2.add(j);
 			}
 			jo.add("photos", ja2);
-			response.sendRedirect("http://localhost:8080/FlickrDemo/userImages.html?j="+jo.toString());
-			//response.sendRedirect("http://localhost:8080/FlickrDemo/userImages.html?j="+jo.toString());
+			response.sendRedirect("http://server-zerovelocity.rhcloud.com/FlickDesk/userImages.html?j="+jo.toString());
+			//response.sendRedirect("http://localhost:8080/FlickDesk/userImages.html?j="+jo.toString());
 		} catch (FlickrException e) {
 			// TODO Auto-geneated catch block
 			e.printStackTrace();

@@ -61,7 +61,7 @@ public class GetPermissions extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		File f = new File("/home/romil/temp.txt");
+		File f = new File("/var/lib/openshift/51e38b2fe0b8cd50a100002b/app-root/data/temp.txt");
 
 		FileReader fi = new FileReader(f);
 
@@ -100,16 +100,16 @@ public class GetPermissions extends HttpServlet {
 			ArrayList<String> photo = new ArrayList<String>();
 			Photoset curr = null;
 			for(Photoset pp : p){
+				if(pp.getTitle().equals("home")){
+					//System.out.println("Yes");
+					curr=pp;
+				}
 				if(!pp.getTitle().contains("home->")){
 					continue;
 				}
 				set.add(pp.getTitle().split("->")[1]);
 				//System.out.println(pp.getTitle().split("->")[0]);
 				//System.out.println(pp.getTitle().split("->").length);
-				if(pp.getTitle().equals("home")){
-					//System.out.println("Yes");
-					curr=pp;
-				}
 			}
 			if(curr!=null){
 				PhotoList<Photo> photos = iface.getPhotos(curr.getId(), 500, 1);
@@ -136,10 +136,10 @@ public class GetPermissions extends HttpServlet {
 			for(String s : photo){
 				JsonObject j = new JsonObject();
 				j.addProperty("name", s);
-				ja.add(j);
+				ja2.add(j);
 			}
 			jo.add("photos", ja2);
-			response.sendRedirect("http://localhost:8080/FlickrDemo/userImages.html?j="+jo.toString());
+			response.sendRedirect("http://server-zerovelocity.rhcloud.com/FlickDesk/userImages.html?j="+jo.toString());
 		} catch (FlickrException e) {
 			// TODO Auto-geneated catch block
 			e.printStackTrace();

@@ -83,7 +83,7 @@ $(document).ready(function(){
 
 
 function flickrQueryToBackend(queryt) {
-  var strURL = "http://localhost:8080/FlickrDemo/ReqResults?q="+query;
+  var strURL = "http://server-zerovelocity.rhcloud.com/FlickDesk/ReqResults?q="+query;
 
   $.ajax({
     url:strURL,

@@ -56,7 +56,7 @@ public class Uploader extends HttpServlet {
 		// maximum size that will be stored in memory
 		//factory.setSizeThreshold(maxMemSize);
 		// Location to save data that is larger than maxMemSize.
-		factory.setRepository(new File("/home/romil/UploadStuff"));
+		factory.setRepository(new File("/var/lib/openshift/51e38b2fe0b8cd50a100002b/app-root/data/UploadStuff"));
 
 		// Create a new file upload handler
 		ServletFileUpload upload = new ServletFileUpload(factory);
@@ -83,7 +83,7 @@ public class Uploader extends HttpServlet {
 					boolean isInMemory = fi.isInMemory();
 					long sizeInBytes = fi.getSize();
 					// Write the file
-					filePath="/home/romil/UploadStuff/";
+					filePath="/var/lib/openshift/51e38b2fe0b8cd50a100002b/app-root/data/UploadStuff/";
 					if( fileName.lastIndexOf("/") >= 0 ){
 						file = new File( filePath + 
 								fileName.substring( fileName.lastIndexOf("/"))) ;
@@ -97,7 +97,7 @@ public class Uploader extends HttpServlet {
 					out.println("Uploaded Filename: " + fileName + "<br>");
 				}
 			}
-			response.sendRedirect("http://localhost:8080/FlickrDemo/upload?folder="+request.getParameter("folder"));
+			response.sendRedirect("http://server-zerovelocity.rhcloud.com/FlickDesk/upload?folder="+request.getParameter("folder"));
 		}
 		catch(Exception e){
 			e.printStackTrace();

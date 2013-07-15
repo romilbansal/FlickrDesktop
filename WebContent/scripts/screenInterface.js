@@ -56,7 +56,7 @@ $(document)
 										curFolder = result.current;
 										
 										var imgU = $(this).attr("src");
-										var moreHTML = "<ul><li><a href=\"displayImage.html?imageURL="+imgU+"&backFolder="+curFolder+"\" \> View Image </a></li><li><a href=\"http://localhost:8080/FlickrDemo/deletePhoto?curr="+curFolder+"&url="+imgU+"\"> Delete Image </a></li><li><a href=\"\"> Move Image </a></li>";
+										var moreHTML = "<ul><li><a href=\"displayImage.html?imageURL="+imgU+"&backFolder="+curFolder+"\" \> View Image </a></li><li><a href=\"http://server-zerovelocity.rhcloud.com/FlickDesk/deletePhoto?curr="+curFolder+"&url="+imgU+"\"> Delete Image </a></li><li><a href=\"\"> Move Image </a></li>";
 										$("#tempMenu").html(moreHTML);
 
 										exists = true;
@@ -82,7 +82,7 @@ $(document)
 								path = path + "->";
 							path = path + folders[j];
 						}
-						menuCrumbs = menuCrumbs + "<a href=\"http://localhost:8080/FlickrDemo/getFolder?next="+path+"\">"+ folders[i] +"</a>";
+						menuCrumbs = menuCrumbs + "<a href=\"http://server-zerovelocity.rhcloud.com/FlickDesk/getFolder?next="+path+"\">"+ folders[i] +"</a>";
 					}
 					
 					
@@ -176,7 +176,7 @@ function getURLParameter(name) {
  * 
  * 
  * function flickrQueryToBackend(queryt) { var strURL =
- * "http://localhost:8080/FlickrDemo/ReqResults?q="+query;
+ * "http://localhost:8080/FlickDesk/ReqResults?q="+query;
  * 
  * $.ajax({ url:strURL, timeout:20000, async: true, type: 'GET', dataType:
  * 'jsonp', crossDomain:true, success: function(result){ // Display Results on

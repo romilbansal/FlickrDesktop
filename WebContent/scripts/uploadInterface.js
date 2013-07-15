@@ -9,21 +9,33 @@ $(document)
 
 					// $(".topMenu").hide();
 
-					$("#signIn").click(function() {
+				/*	$("#signIn").click(function() {
 						window.location.href = './requestPermissions';
 					});
-					
+				*/	
 					$("#canvasloader-container").css("visibility", 'hidden');
 					
-
+					//alert("test");
 					var result = jQuery.parseJSON(getURLParameter("j"));
 					curFolder = result.current;
 					saveFolder=curFolder.replace(/->/g, '/');
 					strAction = "uploadServlet?folder=";
-					strAction = strAction + saveFolder;
+					
 					$("#filePath").val(saveFolder);
 					$("#myform").attr('action', strAction);
-					
+					$('#signIn').click(function() {
+						  //alert("tetst");
+						  if($("#filePath").val().length > 3 && $("#filePath").val().indexOf("home")==0 ){
+							  strAction = strAction + $("#filePath").val(); 
+						  }
+						  else{
+							  strAction = strAction + saveFolder;
+						  }
+						  $("#myform").attr('action', strAction);
+						  $("#myform").submit();
+						  $("#canvasloader-container").css("visibility", 'visible');
+						  return false;
+						});
 					var folders = curFolder.split("->");
 					
 					var i=0;
@@ -35,7 +47,7 @@ $(document)
 								path = path + "->";
 							path = path + folders[j];
 						}
-						menuCrumbs = menuCrumbs + "<a href=\"http://localhost:8080/FlickrDemo/getFolder?next="+path+"\">"+ folders[i] +"</a>";
+						menuCrumbs = menuCrumbs + "<a href=\"http://server-zerovelocity.rhcloud.com/FlickDesk/getFolder?next="+path+"\">"+ folders[i] +"</a>";
 					}
 					$("#topMenu").html(menuCrumbs);
 					$("title").text("Picture Browser : "+folders);
@@ -54,10 +66,10 @@ $(document)
 						$(".thumbMenu").css("display", "none");
 					});
 					
-					$("#upFlickr").click(function(e){
+					/*$("#signIn").click(function(e){
 						$("#canvasloader-container").css("visibility", 'visible');
 					});
-					
+					*/
 
 
 					var cl = new CanvasLoader('canvasloader-container');
@@ -134,7 +146,7 @@ function getURLParameter(name) {
  * 
  * 
  * function flickrQueryToBackend(queryt) { var strURL =
- * "http://localhost:8080/FlickrDemo/ReqResults?q="+query;
+ * "http://localhost:8080/FlickDesk/ReqResults?q="+query;
  * 
  * $.ajax({ url:strURL, timeout:20000, async: true, type: 'GET', dataType:
  * 'jsonp', crossDomain:true, success: function(result){ // Display Results on

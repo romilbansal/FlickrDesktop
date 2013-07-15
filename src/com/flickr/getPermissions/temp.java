@@ -27,7 +27,7 @@ public class temp extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stubtp
-		response.sendRedirect("http://localhost:8080/FlickrDemo/upload.html?j="+request.getParameter("j"));
+		response.sendRedirect("http://server-zerovelocity.rhcloud.com/FlickDesk/upload.html?j="+request.getParameter("j"));
 	}
 
 	/**
